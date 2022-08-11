@@ -1,11 +1,11 @@
-import express from 'express';
+import express,{Application, Request,Response} from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
 (async () => {
 
   // Init the Express application
-  const app = express();
+  const app:Application = express();
 
   // Set the network port
   const port = process.env.PORT || 8082;
@@ -34,10 +34,10 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // Root Endpoint
   // Displays a simple message to the user
   
-  app.get( "/", async ( req, res ) => {
+  app.get( "/", async ( req:Request, res:Response ) => {
     res.send("Hello this is Udacity Project two")
   } );
-  app.get("/filteredimage", async (req, res) =>{
+  app.get("/filteredimage", async (req:Request, res:Response) =>{
   try{
     var inputURL=req.query.image_url
     if(!inputURL){
