@@ -39,11 +39,11 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   } );
   app.get("/filteredimage", async (req:Request, res:Response) =>{
   try{
-    var inputURL=req.query.image_url
+    var inputURL:string =req.query.image_url
     if(!inputURL){
       return res.status(400).send("Ooops! There is no image");
     }
-    const filteredpath  = await filterImageFromURL(inputURL);
+    const filteredpath:string  = await filterImageFromURL(inputURL);
     res.sendFile(filteredpath);
     res.on('finish', () => deleteLocalFiles([filteredpath]));
   } catch {
